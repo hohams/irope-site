@@ -1,0 +1,22 @@
+---
+import '../styles/global.css';
+import type { SiteConfig } from '../content/sites';
+const { site, title, description } = Astro.props as { site: SiteConfig; title?: string; description?: string };
+const pageTitle = title ? `${title} | ${site.name}` : `${site.name} — ${site.tagline}`;
+const pageDescription = description || site.hero.text;
+---
+<!doctype html>
+<html lang={site.locale.split('-')[0]}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={pageDescription} />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <title>{pageTitle}</title>
+  </head>
+  <body><slot /></body>
+</html>

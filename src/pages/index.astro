@@ -1,0 +1,9 @@
+---
+import { activeSite } from '../content/sites';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Gallery from '../components/Gallery.astro';
+const site = activeSite();
+---
+<BaseLayout {site}><Header {site} /><main><section class="hero"><p class="eyebrow">{site.hero.eyebrow}</p><h1>{site.hero.title}</h1><p class="lead">{site.hero.text}</p><a class="button" href="#contact">{site.hero.primaryAction}</a></section><section id="services" class="section"><p class="eyebrow">Paslaugos</p><h2>Ką galime padaryti</h2><div class="cards">{site.services.map((service) => <article class="card"><h3>{service.title}</h3><p>{service.text}</p></article>)}</div></section>{site.id === 'irope' && <Gallery />}<section id="about" class="section split"><div><p class="eyebrow">Apie iRope</p><h2>Sprendimai ten, kur reikia dirbti aukštyje</h2></div><ul>{site.trust.map((item) => <li>{item}</li>)}</ul></section><ContactForm {site} /></main><footer>© {new Date().getFullYear()} {site.name} · {site.address} · <a href="/teisine-informacija/">Teisinė informacija</a></footer></BaseLayout>

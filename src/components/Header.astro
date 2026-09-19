@@ -1,0 +1,5 @@
+---
+import type { SiteConfig } from '../content/sites';
+const { site } = Astro.props as { site: SiteConfig };
+---
+<header class="header"><a class="brand" href="/">{site.id === 'irope' ? <img src="/images/irope/logo-rope.png" alt="iRope Technologies" /> : <><b>{site.name}</b><span>{site.tagline}</span></>}</a><nav aria-label="Pagrindinė navigacija">{site.nav.map((item) => <a href={item.href}>{item.label}</a>)}</nav><a class="button button-small" href="#contact">{site.hero.primaryAction}</a></header>

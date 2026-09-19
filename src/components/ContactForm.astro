@@ -1,0 +1,7 @@
+---
+import type { SiteConfig } from '../content/sites';
+const { site } = Astro.props as { site: SiteConfig };
+const endpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT;
+const whatsapp = `https://wa.me/${site.phone.replace(/\D/g, '')}`;
+---
+<section id="contact" class="contact section"><div><p class="eyebrow">Kontaktai</p><h2>Papasakokite apie darbą</h2><p>Susisiekite jums patogiu būdu arba užpildykite formą. Atsakysime kuo greičiau.</p><p><a href={`mailto:${site.email}`}>{site.email}</a><br /><a href={`tel:${site.phone.replace(/\s/g, '')}`}>{site.phone}</a><br /><a href={whatsapp} target="_blank" rel="noopener">WhatsApp</a></p></div><form action={endpoint || `mailto:${site.email}`} method={endpoint ? 'POST' : 'GET'}><label>Vardas *<input name="name" required autocomplete="name" /></label><label>Telefonas arba el. paštas *<input name="contact" required autocomplete="email" /></label><label>Trumpai apie darbą *<textarea name="message" required rows="5"></textarea></label>{endpoint && <input type="hidden" name="site" value={site.name} />}<button class="button" type="submit">Siųsti užklausą</button>{!endpoint && <p class="form-note">Forma bus prijungta prieš svetainės paleidimą. Kol kas galite rašyti el. paštu arba per WhatsApp.</p>}</form></section>
