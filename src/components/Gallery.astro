@@ -1,11 +1,11 @@
 ---
 const works = [
-  { image: '/images/irope/facade-high-rise.jpg', alt: 'Aukštalipiai plauna stiklinį aukštybinį pastatą', title: 'Fasadų plovimas aukštyje' },
-  { image: '/images/irope/roof-cleaning.jpg', alt: 'Specialistas valo čerpinį stogą', title: 'Stogų valymas ir priežiūra' },
-  { image: '/images/irope/roof-washing.jpg', alt: 'Stogo valymas aukšto slėgio įranga', title: 'Kruopštus stogo plovimas' },
-  { image: '/images/irope/roof-access.jpg', alt: 'Darbas su apsaugine įranga ant stogo', title: 'Saugus priėjimas prie stogo' },
-  { image: '/images/irope/gutter-work.jpg', alt: 'Sutvarkytas pastato lietvamzdis', title: 'Lietvamzdžių ir latakų darbai' },
-  { image: '/images/irope/industrial-height.jpg', alt: 'Aukštas pramoninis kaminas', title: 'Pramoniniai objektai' },
+  { image: '/images/irope/facade-high-rise.jpg', alt: 'Aukštalipiai plauna stiklinį aukštybinį pastatą', title: 'Fasadų plovimas aukštyje', width: 1280, height: 576 },
+  { image: '/images/irope/roof-cleaning.jpg', alt: 'Specialistas valo čerpinį stogą', title: 'Stogų valymas ir priežiūra', width: 1200, height: 1600 },
+  { image: '/images/irope/roof-washing.jpg', alt: 'Stogo valymas aukšto slėgio įranga', title: 'Kruopštus stogo plovimas', width: 1200, height: 1600 },
+  { image: '/images/irope/roof-access.jpg', alt: 'Darbas su apsaugine įranga ant stogo', title: 'Saugus priėjimas prie stogo', width: 1457, height: 1196 },
+  { image: '/images/irope/gutter-work.jpg', alt: 'Sutvarkytas pastato lietvamzdis', title: 'Lietvamzdžių ir latakų darbai', width: 1455, height: 1181 },
+  { image: '/images/irope/facade-work.jpg', alt: 'Specialistas atlieka fasado darbus su apsaugine įranga', title: 'Fasadų darbai aukštyje', width: 1280, height: 1280 },
 ];
 ---
-<section id="darbai" class="section"><p class="eyebrow">Atlikti darbai</p><h2>Patirtis, kurią galima pamatyti</h2><div class="gallery">{works.map((work) => <figure><img src={work.image} alt={work.alt} loading="lazy" /><figcaption>{work.title}</figcaption></figure>)}</div><p class="gallery-link">Daugiau nuotraukų, paslaugų ir atsiliepimų: <a href="https://paslaugos.lt/irope-lt-sk1049" target="_blank" rel="noopener">iRope LT Paslaugos.lt</a>.</p></section>
+<section id="darbai" class="section" aria-labelledby="works-title"><p class="eyebrow">Atlikti darbai</p><h2 id="works-title">Patirtis, kurią galima pamatyti</h2><div class="gallery">{works.map((work) => <figure><img src={work.image} alt={work.alt} loading="lazy" decoding="async" width={work.width} height={work.height} /><figcaption>{work.title}</figcaption></figure>)}</div><p class="gallery-link">Daugiau nuotraukų, paslaugų ir atsiliepimų: <a href="https://paslaugos.lt/irope-lt-sk1049" target="_blank" rel="noopener noreferrer">iRope LT Paslaugos.lt</a>.</p></section>

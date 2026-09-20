@@ -2,8 +2,20 @@
 import '../styles/global.css';
 import type { SiteConfig } from '../content/sites';
 const { site, title, description } = Astro.props as { site: SiteConfig; title?: string; description?: string };
-const pageTitle = title ? `${title} | ${site.name}` : `${site.name} — ${site.tagline}`;
-const pageDescription = description || site.hero.text;
+const pageTitle = title ? `${title} | ${site.name}` : (site.seo?.title || `${site.name} — ${site.tagline}`);
+const pageDescription = description || site.seo?.description || site.hero.text;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const ogImage = site.seo?.image ? new URL(site.seo.image, Astro.site) : undefined;
+const structuredData = site.id === 'irope' ? {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: site.name,
+  url: Astro.site?.toString(),
+  telephone: site.phone,
+  email: site.email,
+  areaServed: { '@type': 'Country', name: 'Lithuania' },
+  serviceType: site.services.map((service) => service.title),
+} : undefined;
 ---
 <!doctype html>
 <html lang={site.locale.split('-')[0]}>
@@ -12,11 +24,17 @@ const pageDescription = description || site.hero.text;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={pageDescription} />
     <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#007f9e" />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content={site.locale.replace('-', '_')} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={pageDescription} />
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    {ogImage && <meta property="og:image" content={ogImage.toString()} />}
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href="/images/irope/logo-rope.png" type="image/png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <title>{pageTitle}</title>
+    {structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
   </head>
   <body><slot /></body>
 </html>

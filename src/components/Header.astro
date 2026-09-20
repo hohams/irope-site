@@ -1,5 +1,7 @@
 ---
 import type { SiteConfig } from '../content/sites';
 const { site } = Astro.props as { site: SiteConfig };
+const isHomePage = Astro.url.pathname === '/';
+const navigationHref = (href: string) => isHomePage ? href : `/${href}`;
 ---
-<header class="header"><a class="brand" href="/">{site.id === 'irope' ? <img src="/images/irope/logo-rope.png" alt="iRope Technologies" /> : <><b>{site.name}</b><span>{site.tagline}</span></>}</a><nav aria-label="Pagrindinė navigacija">{site.nav.map((item) => <a href={item.href}>{item.label}</a>)}</nav><a class="button button-small" href="#contact">{site.hero.primaryAction}</a></header>
+<header class="header"><a class="brand" href="/" aria-label={`${site.name}: pagrindinis puslapis`}>{site.id === 'irope' ? <img src="/images/irope/logo-rope.png" alt="iRope Technologies" width="3508" height="2480" /> : <><b>{site.name}</b><span>{site.tagline}</span></>}</a><nav aria-label="Pagrindinė navigacija">{site.nav.map((item) => <a href={navigationHref(item.href)}>{item.label}</a>)}</nav><a class="button button-small" href={navigationHref(`#${site.sectionIds.contact}`)}>{site.hero.primaryAction}</a></header>

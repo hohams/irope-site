@@ -1,0 +1,15 @@
+{
+  "name": "iRope",
+  "short_name": "iRope",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#f6fbfc",
+  "theme_color": "#007f9e",
+  "icons": [
+    {
+      "src": "/images/irope/logo-rope.png",
+      "sizes": "any",
+      "type": "image/png"
+    }
+  ]
+}
