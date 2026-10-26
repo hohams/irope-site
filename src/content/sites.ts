@@ -17,7 +17,7 @@ export type SiteConfig = {
 export const sites: Record<SiteConfig['id'], SiteConfig> = {
   irope: {
     id: 'irope', name: 'iRope', tagline: 'Pramoninis alpinizmas Lietuvoje', locale: 'lt-LT',
-    email: 'užsakymas@irope.lt', phone: '+370 695 16 562', address: 'Vilnius, visa Lietuva',
+    email: 'info@irope.lt', phone: '+370 695 16 562', address: 'Vilnius, visa Lietuva',
     sectionIds: { services: 'paslaugos', work: 'darbai', about: 'apie', contact: 'kontaktai' },
     nav: [{ label: 'Paslaugos', href: '#paslaugos' }, { label: 'Darbai', href: '#darbai' }, { label: 'Apie mus', href: '#apie' }, { label: 'Kontaktai', href: '#kontaktai' }],
     hero: { eyebrow: 'Vilnius · visa Lietuva', title: 'Patikimi darbai aukštyje', text: 'Pramoninis alpinizmas, stogų priežiūra ir fasadų valymas ten, kur įprastos priemonės nepasiekia.', primaryAction: 'Gauti pasiūlymą' },
