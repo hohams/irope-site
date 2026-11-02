@@ -22,13 +22,15 @@ export const sites: Record<SiteConfig['id'], SiteConfig> = {
     nav: [{ label: 'Paslaugos', href: '#paslaugos' }, { label: 'Darbai', href: '#darbai' }, { label: 'Apie mus', href: '#apie' }, { label: 'Kontaktai', href: '#kontaktai' }],
     hero: { eyebrow: 'Vilnius · visa Lietuva', title: 'Patikimi darbai aukštyje', text: 'Pramoninis alpinizmas, stogų priežiūra ir fasadų valymas ten, kur įprastos priemonės nepasiekia.', primaryAction: 'Gauti pasiūlymą' },
     services: [
-      { title: 'Pramoninis alpinizmas', text: 'Įvairūs darbai aukštyje, atliekami naudojant alpinistinę įrangą.' },
-      { title: 'Stogų priežiūra', text: 'Sniego, samanų ir nešvarumų valymas, smulkus remontas bei latakų priežiūra.' },
-      { title: 'Langų ir fasadų plovimas', text: 'Komercinių pastatų langų, fasadų, kupolų ir atriumų valymas.' },
-      { title: 'Montavimas ir demontavimas', text: 'Iškabos, reklama, konstrukcijos, antenos ir šildymo kabeliai.' },
-      { title: 'Remontas aukštyje', text: 'Fasadų, stogų ir ventiliacijos šachtų remontas.' },
-      { title: 'Dūmtraukių ir pramoninių vamzdžių apžiūra', text: 'Apžiūrime dūmtraukius ir pramoninius vamzdžius aukštyje.' },
-      { title: 'Sezoniniai darbai', text: 'Šventinių dekoracijų montavimas ir demontavimas.' }
+      { title: 'Stogų apžiūra ir remontas', text: 'Apžiūrime stogus ir remontuojame metalinę, čerpinę bei prilydomą ritininę stogo dangą.' },
+      { title: 'Stogų valymas ir plovimas', text: 'Valome samanas ir kitus nešvarumus, plauname stogų dangas.' },
+      { title: 'Latakų ir lietvamzdžių priežiūra', text: 'Valome, montuojame ir remontuojame lietaus vandens latakus bei lietvamzdžius.' },
+      { title: 'Sniegas, ledas ir stogų apsauga', text: 'Šaliname sniegą, ledą ir varveklius. Montuojame sniego užtvaras ir stogų bei lietaus nuvedimo sistemų šildymo kabelius.' },
+      { title: 'Langų, fasadų ir pramoninių konstrukcijų valymas', text: 'Plauname langus, fasadus, kupolus ir atriumų stiklus. Atliekame pramoninių konstrukcijų valymo darbus aukštyje.' },
+      { title: 'Fasadų ir ventiliacijos šachtų remontas', text: 'Remontuojame ir dažome fasadus, remontuojame ventiliacijos šachtas.' },
+      { title: 'Dūmtraukių ir pramoninių vamzdžių apžiūra', text: 'Apžiūrime dūmtraukius, pramoninius vamzdžius ir pramoninių objektų konstrukcijas. Remontuojame dūmtraukius ir jų viršutines dalis.' },
+      { title: 'Montavimo ir elektros darbai aukštyje', text: 'Montuojame ir išmontuojame konstrukcijas, iškabas, reklaminius stendus ir antenas. Atliekame elektros montavimo darbus aukštyje.' },
+      { title: 'Šventinės dekoracijos ir apsauga nuo paukščių', text: 'Montuojame ir išmontuojame šventines dekoracijas. Įrengiame apsaugos nuo paukščių sistemas.' }
     ],
     trust: ['21 metų patirtis', 'Dirbame visoje Lietuvoje', 'Nemokamas darbų įvertinimas vietoje'],
     seo: {
