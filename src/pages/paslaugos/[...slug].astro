@@ -1,0 +1,70 @@
+---
+import { activeSite } from '../../content/sites';
+import type { ServicePage } from '../../content/irope-pages';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import ContactForm from '../../components/ContactForm.astro';
+
+export function getStaticPaths() {
+  const site = activeSite();
+  if (site.id !== 'irope') return [];
+  return [
+    { params: { slug: undefined }, props: { page: undefined } },
+    ...site.services.flatMap((service) => (service.pages ?? []).map((page) => ({
+      params: { slug: page.slug }, props: { page },
+    }))),
+  ];
+}
+
+const site = activeSite();
+const { page } = Astro.props as { page?: ServicePage };
+const title = page ? `${page.name} Vilniuje` : 'Aukštuminių darbų paslaugos Vilniuje';
+const description = page?.description ?? 'iRope aukštuminių darbų katalogas: stogai ir lietaus nuvedimo sistemos, fasadai, dūmtraukių ir pramoninių vamzdžių apžiūra, montavimas bei sezoniniai darbai.';
+const otherPages = site.services.flatMap((service) => service.pages ?? []).filter((item) => item.slug !== page?.slug);
+---
+<BaseLayout {site} {title} {description}>
+  <Header {site} />
+  <main>
+    <div class="section service-body">
+      <nav aria-label="Naršymo kelias" class="crumbs">
+        <a href="/">Pradžia</a> /
+        {page ? <a href="/paslaugos/">Paslaugos</a> : <span aria-current="page">Paslaugos</span>}
+      </nav>
+      <h1>{title}</h1>
+      {page ? <>
+        <p class="lead">{page.introduction}</p>
+        <a class="button" href="#kontaktai">Pateikti užklausą</a>
+        <div class="detail-copy">
+          {page.sections.map((section) => <section><h2>{section.heading}</h2><p>{section.text}</p></section>)}
+          <section><h2>Ko reikia pasiūlymui?</h2><p>{page.request}</p></section>
+        </div>
+        <p><strong>Vilnius ir Vilniaus rajonas.</strong> Dėl darbų kitoje vietovėje užklausoje nurodykite objekto adresą.</p>
+        <nav class="other" aria-label="Kitos paslaugos">
+          <h2>Kitos paslaugos</h2>
+          <ul>{otherPages.map((item) => <li><a href={`/paslaugos/${item.slug}/`}>{item.name}</a></li>)}</ul>
+          <a href="/paslaugos/">Visas paslaugų katalogas</a>
+        </nav>
+      </> : <>
+        <p class="lead">Pasirinkite darbus pagal tai, kurią pastato dalį reikia prižiūrėti, remontuoti ar apžiūrėti. Jei reikia kelių paslaugų tame pačiame objekte, jas galite nurodyti vienoje užklausoje.</p>
+        <div class="cards">
+          {site.services.map((service) => <article class="card">
+            <h2>{service.title}</h2><p>{service.text}</p>
+            {service.pages && <ul>{service.pages.map((item) => <li><a href={`/paslaugos/${item.slug}/`}>{item.name}</a></li>)}</ul>}
+          </article>)}
+        </div>
+      </>}
+    </div>
+    <ContactForm {site} />
+  </main>
+  <footer>© {new Date().getFullYear()} {site.name} · <a href="/teisine-informacija/">Teisinė informacija</a></footer>
+</BaseLayout>
+<style>
+  .service-body h1 { font-size: clamp(2.4rem, 5vw, 4rem); }
+  .crumbs { margin-bottom: 1.25rem; color: var(--muted); }
+  .detail-copy, .other { max-width: 48rem; }
+  .detail-copy section, .other { margin-top: 2rem; }
+  .detail-copy h2, .other h2 { font-size: 1.6rem; margin: 0 0 .4em; }
+  .detail-copy p { margin: 0; }
+  .card h2 { font-size: 1.3rem; }
+  .service-body li + li { margin-top: .4em; }
+</style>
