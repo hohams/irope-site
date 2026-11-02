@@ -1,12 +1,12 @@
 ---
-const id = import.meta.env.PUBLIC_GA4_MEASUREMENT_ID?.trim();
+const id = (import.meta.env.PUBLIC_GA4_MEASUREMENT_ID ?? 'G-90XD3KE95Q').trim();
 const enabled = id && /^G-[A-Z0-9]+$/.test(id);
 ---
 {enabled && <div id="irope-analytics" data-id={id}>
   <button type="button" id="cookie-settings" hidden>Slapukų nustatymai</button>
   <section id="cookie-choice" aria-labelledby="cookie-title" hidden>
     <strong id="cookie-title">Statistikos slapukai</strong>
-    <p>Jums sutikus, naudojame „Google Analytics“, kad sužinotume, kaip lankytojai randa mūsų paslaugas ir kuriuose puslapiuose pateikia užklausas. Pasirinkimą galite pakeisti puslapio apačioje.</p>
+    <p>Jums sutikus, naudojame „Google Analytics“, kad sužinotume, kaip lankytojai randa mūsų paslaugas ir kuriuose puslapiuose pateikia užklausas. Pasirinkimą galite pakeisti puslapio apačioje. <a href="/teisine-informacija/#statistika">Apie statistikos duomenis</a></p>
     <button type="button" data-choice="no">Nesutikti</button>
     <button type="button" data-choice="yes">Sutikti</button>
   </section>
