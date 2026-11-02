@@ -26,8 +26,9 @@ export const sites: Record<SiteConfig['id'], SiteConfig> = {
       { title: 'Stogų priežiūra', text: 'Sniego, samanų ir nešvarumų valymas, smulkus remontas bei latakų priežiūra.' },
       { title: 'Langų ir fasadų plovimas', text: 'Komercinių pastatų langų, fasadų, kupolų ir atriumų valymas.' },
       { title: 'Montavimas ir demontavimas', text: 'Iškabos, reklama, konstrukcijos, antenos ir šildymo kabeliai.' },
-      { title: 'Remontas aukštyje', text: 'Fasadų, stogų, ventiliacijos šachtų ir blokinių namų siūlių darbai.' },
-      { title: 'Sezoniniai darbai', text: 'Kalėdinių dekoracijų montavimas ir sudėtingų medžių pjovimas.' }
+      { title: 'Remontas aukštyje', text: 'Fasadų, stogų ir ventiliacijos šachtų remontas.' },
+      { title: 'Dūmtraukių ir pramoninių vamzdžių apžiūra', text: 'Apžiūrime dūmtraukius ir pramoninius vamzdžius aukštyje.' },
+      { title: 'Sezoniniai darbai', text: 'Šventinių dekoracijų montavimas ir demontavimas.' }
     ],
     trust: ['21 metų patirtis', 'Dirbame visoje Lietuvoje', 'Nemokamas darbų įvertinimas vietoje'],
     seo: {
