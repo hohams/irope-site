@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import IropeAnalytics from '../components/IropeAnalytics.astro';
 import type { SiteConfig } from '../content/sites';
 const { site, title, description } = Astro.props as { site: SiteConfig; title?: string; description?: string };
 const pageTitle = title ? `${title} | ${site.name}` : (site.seo?.title || `${site.name} — ${site.tagline}`);
@@ -36,5 +37,5 @@ const structuredData = site.id === 'irope' ? {
     <title>{pageTitle}</title>
     {structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
   </head>
-  <body><slot /></body>
+  <body><slot />{site.id === 'irope' && <IropeAnalytics />}</body>
 </html>
