@@ -1,0 +1,107 @@
+---
+const id = import.meta.env.PUBLIC_GA4_MEASUREMENT_ID?.trim();
+const enabled = id && /^G-[A-Z0-9]+$/.test(id);
+---
+{enabled && <div id="irope-analytics" data-id={id}>
+  <button type="button" id="cookie-settings" hidden>Slapukų nustatymai</button>
+  <section id="cookie-choice" aria-labelledby="cookie-title" hidden>
+    <strong id="cookie-title">Statistikos slapukai</strong>
+    <p>Jums sutikus, naudojame „Google Analytics“, kad sužinotume, kaip lankytojai randa mūsų paslaugas ir kuriuose puslapiuose pateikia užklausas. Pasirinkimą galite pakeisti puslapio apačioje.</p>
+    <button type="button" data-choice="no">Nesutikti</button>
+    <button type="button" data-choice="yes">Sutikti</button>
+  </section>
+</div>}
+<script is:inline>
+(() => {
+  const root = document.getElementById('irope-analytics');
+  if (!root || location.hostname !== 'irope.lt') return;
+  const id = root.dataset.id;
+  const key = 'irope_statistics';
+  const panel = root.querySelector('#cookie-choice');
+  const settings = root.querySelector('#cookie-settings');
+  const choice = () => document.cookie.split('; ').find(item => item.startsWith(key + '='))?.slice(key.length + 1);
+  let started = false;
+  function start() {
+    if (started || choice() !== 'yes') return;
+    started = true;
+    window['ga-disable-' + id] = false;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('consent', 'default', { analytics_storage: 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+    window.gtag('js', new Date());
+    window.gtag('config', id, {
+      page_location: location.origin + location.pathname,
+      page_referrer: document.referrer ? new URL(document.referrer).origin : '',
+      allow_google_signals: false, allow_ad_personalization_signals: false,
+      cookie_expires: 15552000
+    });
+    const tag = document.createElement('script');
+    tag.async = true;
+    tag.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
+    document.head.append(tag);
+  }
+  function stop() {
+    window['ga-disable-' + id] = true;
+    for (const entry of document.cookie.split('; ')) {
+      const name = entry.split('=')[0];
+      if (name === '_ga' || name.startsWith('_ga_')) {
+        const expired = name + '=; Path=/; Max-Age=0; SameSite=Lax; Secure';
+        document.cookie = expired;
+        document.cookie = expired + '; Domain=irope.lt';
+      }
+    }
+  }
+  settings.hidden = false;
+  panel.hidden = ['yes','no'].includes(choice());
+  settings.addEventListener('click', () => { panel.hidden = false; panel.querySelector('button').focus(); });
+  panel.addEventListener('click', event => {
+    const value = event.target.closest('[data-choice]')?.dataset.choice;
+    if (!value) return;
+    document.cookie = key + '=' + value + '; Max-Age=15552000; Path=/; SameSite=Lax; Secure';
+    panel.hidden = true;
+    settings.focus({preventScroll:true});
+    if (value === 'yes') { if (started) window['ga-disable-' + id] = false; else start(); }
+    else stop();
+  });
+  const sync = () => { if (choice() === 'yes') { window['ga-disable-' + id] = false; start(); } else if (started) stop(); };
+  window.addEventListener('pageshow', sync);
+  window.addEventListener('focus', sync);
+  start();
+
+  // The normal form POST remains available without JavaScript or consent.
+  const form = document.querySelector('form[action="/api/contact"]');
+  if (!form) return;
+  let sending = false;
+  form.addEventListener('submit', async event => {
+    if (sending) { event.preventDefault(); return; }
+    if (!started || choice() !== 'yes') return;
+    event.preventDefault();
+    const button = form.querySelector('[type=submit]');
+    let notice = form.querySelector('[role=status]');
+    if (!notice) { notice = document.createElement('p'); notice.setAttribute('role', 'status'); form.append(notice); }
+    sending = true;
+    button.disabled = true;
+    notice.textContent = 'Siunčiama…';
+    try {
+      const response = await fetch(form.action, { method: 'POST', body: new URLSearchParams(new FormData(form)), signal: AbortSignal.timeout(30000) });
+      const doc = new DOMParser().parseFromString(await response.text(), 'text/html');
+      const result = doc.querySelector('h1')?.textContent.trim();
+      notice.textContent = result || 'Nepavyko patvirtinti užklausos. Parašykite adresu info@irope.lt.';
+      if (response.ok && result === 'Užklausa priimta. Susisieksime su jumis.') {
+        form.reset();
+        if (choice() === 'yes') window.gtag('event', 'generate_lead', { send_to: id, lead_source: 'contact_form' });
+      }
+    } catch {
+      notice.textContent = 'Nepavyko patvirtinti užklausos. Parašykite adresu info@irope.lt.';
+    } finally { sending = false; button.disabled = false; }
+  });
+})();
+</script>
+<style>
+  #irope-analytics { max-width:1120px; margin:0 auto; padding:0 24px 24px; }
+  #irope-analytics [hidden] { display:none; }
+  #cookie-settings { color:var(--accent-deep); background:none; border:none; font:inherit; text-decoration:underline; cursor:pointer; }
+  #cookie-choice { position:fixed; z-index:10; bottom:1rem; left:1rem; right:1rem; max-width:34rem; max-height:70vh; overflow:auto; padding:1.25rem; border:1px solid var(--line); border-radius:.5rem; background:white; box-shadow:0 4px 24px #101b2924; }
+  #cookie-choice p { margin:.5rem 0 1rem; }
+  #cookie-choice button { padding:.55rem 1rem; margin:.2rem .4rem .2rem 0; border:1px solid var(--accent-deep); border-radius:.3rem; color:var(--accent-deep); background:white; font:inherit; cursor:pointer; }
+</style>
