@@ -1,16 +1,18 @@
 ---
 import type { ServicePage } from '../content/irope-pages';
-import ServicePhotos from './ServicePhotos.astro';
 
 interface Props { page: ServicePage }
 const { page } = Astro.props;
 ---
-<article class="card">
-  <h3><a href={`/paslaugos/${page.slug}/`}>{page.name}</a></h3>
-  <p>{page.summary}</p>
-  {page.photos && <ServicePhotos photos={page.photos} />}
-</article>
+<a class="service" href={`/paslaugos/${page.slug}/`} aria-labelledby={`service-${page.slug}`}>
+  <div><h3 id={`service-${page.slug}`}>{page.name}</h3><p>{page.summary}</p></div>
+  <span aria-hidden="true">→</span>
+</a>
 <style>
-  h3 a { color: var(--accent-deep); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .18em; }
-  h3 a:hover, h3 a:focus-visible { color: var(--accent); text-decoration-thickness: 2px; }
+  .service { display: flex; justify-content: space-between; align-items: center; gap: 1.25rem; padding: 1.1rem 1.3rem; background: #fff; border: 1px solid var(--line); border-radius: 1rem; text-decoration: none; }
+  .service:is(:hover,:focus-visible) { border-color: #478589; background: #f3faf9; }
+  .service h3 { margin: 0; font-size: 1.12rem; color: var(--accent-deep); }
+  .service:is(:hover,:focus-visible) h3 { text-decoration: underline; }
+  .service p { margin: .25rem 0 0; color: var(--muted); }
+  .service span { color: #39727a; font-size: 1.2rem; }
 </style>

@@ -172,12 +172,85 @@ const birds: ServicePage = {
   request: 'Parašykite adresą, apytikslius matmenis ir pridėkite pastato bei konkrečios vietos nuotraukas iš saugiai pasiekiamo taško.',
 };
 
-export const serviceGroups: { name: string; pages: ServicePage[] }[] = [
-  { name: 'Stogai ir apsauga žiemą', pages: [roofRepair, roofCleaning, roofSnow, snowGuards, roofHeating] },
-  { name: 'Lietaus nuvedimo sistemos', pages: [gutterCleaning, gutterRepair] },
-  { name: 'Fasadai, stiklas ir konstrukcijos', pages: [windowCleaning, facadeWashing, industrialCleaning, facadeRepair, ventRepair] },
-  { name: 'Dūmtraukiai ir pramoniniai vamzdžiai', pages: [chimneyInspection, chimneyRepair] },
-  { name: 'Montavimas aukštyje', pages: [heightMounting, antennas, electrics, holidayLights, birds] },
+export type ServiceGroup = {
+  slug: string;
+  name: string;
+  summary: string;
+  title: string;
+  description: string;
+  introduction: string;
+  question: string;
+  answer: string;
+  pages: ServicePage[];
+};
+
+export const serviceGroups: ServiceGroup[] = [
+  {
+    slug: 'latakai-ir-lietvamzdziai',
+    name: 'Latakai ir lietvamzdžiai',
+    summary: 'Valymas, remontas ir naujų atkarpų montavimas.',
+    title: 'Latakų ir lietvamzdžių priežiūra Vilniuje',
+    description: 'Latakų ir lietvamzdžių priežiūra Vilniuje: pasirinkite valymą, jei vanduo persipila, arba remontą ir montavimą, jei pažeisti sistemos elementai.',
+    introduction: 'Valome lietaus nuvedimo sistemas ir remontuojame jų dalis. Čia galite pasirinkti darbus pagal tai, kas vyksta lyjant: vanduo persipila per kraštą, prateka per jungtį ar teka pro atsikabinusį vamzdį.',
+    question: 'Kada reikia valymo, o kada remonto?',
+    answer: 'Jei latake susikaupė lapų, pradėkite nuo valymo. Jei matyti plyšys, atsiskyrusi jungtis ar trūksta lietvamzdžio atkarpos, rinkitės remontą. Kai priežastis neaiški, užklausai pakanka bendro fasado vaizdo ir nuotraukos, kurioje matyti probleminė vieta.',
+    pages: [gutterCleaning, gutterRepair],
+  },
+  {
+    slug: 'stogu-apsauga-ziema',
+    name: 'Stogų priežiūra žiemą',
+    summary: 'Sniegas, varvekliai, užtvaros ir šildymo kabeliai.',
+    title: 'Sniego valymas ir stogų apsauga žiemą Vilniuje',
+    description: 'Sniego valymas nuo stogų, varveklių šalinimas, sniego užtvaros ir šildymo kabeliai Vilniuje. Pasirinkite darbus pagal apledėjimo ar sniego kaupimosi vietą.',
+    introduction: 'Šaliname sniegą ir varveklius. Jei ta pati vieta apledėja kas žiemą arba sniegas nuslenka nuo šlaito virš įėjimo, atskirai įvertiname šildymo kabelių ar sniego užtvarų montavimą.',
+    question: 'Ar reikia pašalinti sniegą dabar, ar pasiruošti kitam sezonui?',
+    answer: 'Susikaupusiam sniegui ir varvekliams rinkitės valymą. Užtvaras svarstykite, kai sniegas slysta nuo šlaito, o šildymo kabelius – kai ledas kaupiasi ties įlaja ar latake. Nurodykite, ar po šia vieta yra įėjimas arba pėsčiųjų takas.',
+    pages: [roofSnow, snowGuards, roofHeating],
+  },
+  {
+    slug: 'stogu-prieziura',
+    name: 'Stogų remontas ir plovimas',
+    summary: 'Dangos apžiūra, pratekėjimų remontas ir samanų valymas.',
+    title: 'Stogų apžiūra, remontas ir plovimas Vilniuje',
+    description: 'Stogų priežiūros darbai Vilniuje: metalinių, čerpinių ir ritininių dangų apžiūra bei remontas, samanų valymas ir stogo plovimas.',
+    introduction: 'Apžiūrime stogo dangą, remontuojame pažeistas vietas ir plauname apnašomis ar samanomis apaugusius šlaitus. Darbų pasirinkimas priklauso nuo to, ar pažeista pati danga, ar reikia nuvalyti jos paviršių.',
+    question: 'Kur kreiptis pastebėjus drėgmės dėmę?',
+    answer: 'Jei po lietaus lubose atsiranda dėmė arba matyti pasislinkusi čerpė, rinkitės apžiūrą ir remontą. Jei danga apaugusi samanomis, rinkitės stogo valymą ir plovimą. Nuotraukas galima padaryti nuo žemės.',
+    pages: [roofRepair, roofCleaning],
+  },
+  {
+    slug: 'fasadai-ir-stiklai',
+    name: 'Fasadai ir langai',
+    summary: 'Langų bei fasadų plovimas, apdailos remontas ir dažymas.',
+    title: 'Fasadų priežiūra ir langų valymas aukštyje Vilniuje',
+    description: 'Langų ir stiklo konstrukcijų valymas, fasadų plovimas, remontas ir dažymas Vilniuje. Pasirinkite paslaugą pagal paviršių ir jo būklę.',
+    introduction: 'Plauname fasadus, langus, stiklinius kupolus ir atriumus. Kai fasado apdaila atšokusi ar nusilupę dažai, vertiname pažeistą vietą ir remonto apimtį.',
+    question: 'Kokį paviršių reikia sutvarkyti?',
+    answer: 'Stiklui nurodykite, kurią pusę reikia nuplauti. Fasado apdailai svarbi medžiaga ir tai, ar paviršius tik nešvarus, ar pažeistas. Bendras pastato vaizdas ir pažeistos vietos nuotrauka padeda atskirti šiuos darbus.',
+    pages: [windowCleaning, facadeWashing, facadeRepair],
+  },
+  {
+    slug: 'dumtraukiai-ir-pramones-objektai',
+    name: 'Dūmtraukiai ir pramonės objektai',
+    summary: 'Vamzdžių apžiūra, šachtų remontas ir konstrukcijų valymas.',
+    title: 'Dūmtraukių ir pramoninių konstrukcijų priežiūra Vilniuje',
+    description: 'Dūmtraukių ir pramoninių vamzdžių apžiūra, dūmtraukių bei ventiliacijos šachtų remontas ir aukštai esančių konstrukcijų valymas Vilniuje.',
+    introduction: 'Apžiūrime dūmtraukius ir pramoninius vamzdžius, remontuojame dūmtraukių viršutines dalis bei ventiliacijos šachtas. Atskirai atliekame sunkiai pasiekiamų sijų, atramų ir kitų pramoninių konstrukcijų valymą.',
+    question: 'Ką nurodyti apie objektą?',
+    answer: 'Pažymėkite konkrečią vietą: dūmtraukio viršų, vamzdžio atkarpą, šachtą ar valomą konstrukciją. Jei tai veikianti gamykla, svarbu žinoti, kada galima patekti į darbo vietą ir ar po ja yra įrenginių.',
+    pages: [chimneyInspection, chimneyRepair, ventRepair, industrialCleaning],
+  },
+  {
+    slug: 'montavimas-aukstyje',
+    name: 'Montavimas aukštyje',
+    summary: 'Iškabos, antenos, elektros darbai, dekoracijos ir apsauga nuo paukščių.',
+    title: 'Montavimo ir elektros darbai aukštyje Vilniuje',
+    description: 'Aukštuminis montavimas Vilniuje: konstrukcijos, iškabos, antenos, elektros įranga, šventinės dekoracijos ir apsaugos nuo paukščių sistemos.',
+    introduction: 'Montuojame ir nuimame iškabas, antenas ir šventines dekoracijas, atliekame elektros montavimo darbus aukštyje bei įrengiame apsaugą nuo paukščių. Pasirinkite įrangą ar konstrukciją, dėl kurios kreipiatės.',
+    question: 'Ko reikia montavimui įvertinti?',
+    answer: 'Pažymėkite tvirtinimo vietą nuotraukoje. Iškabai ar antenai naudingi matmenys ir svoris, dekoracijoms – montavimo ir nuėmimo datos, apsaugai nuo paukščių – karnizo ilgis arba nišos matmenys.',
+    pages: [heightMounting, antennas, electrics, holidayLights, birds],
+  },
 ];
 
 export const servicePages = serviceGroups.flatMap((group) => group.pages);
