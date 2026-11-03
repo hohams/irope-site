@@ -1,5 +1,5 @@
 ---
-import { serviceGroups } from '../content/irope-catalog';
+import { ropeAccess, serviceGroups } from '../content/irope-catalog';
 
 const icons: Record<string, string> = {
   'latakai-ir-lietvamzdziai': 'M3 6h13v4a3 3 0 0 1-3 3H8a5 5 0 0 1-5-5Zm8 7v3a4 4 0 0 0 4 4h6 M15 13v2a1 1 0 0 0 1 1h5',
@@ -10,6 +10,11 @@ const icons: Record<string, string> = {
   'montavimas-aukstyje': 'M3 21h7 M5 21V6l3-3v18 M3 7l5-4 12 4H3 M8 11l5-4 M18 7v6 M18 13v2a2 2 0 1 1-4 0',
 };
 ---
+<a class="rope-access" href={`/paslaugos/${ropeAccess.slug}/`} aria-labelledby="rope-access-heading">
+  <span class="rope-symbol" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2v5m-5 18-1 5m6-3 2 3m-5-20 5-1 3 4c2 3 1 5-1 7l-5 5c-2 2-5 2-7 0s-2-5 0-7l5-8Z"/><path d="m12 15 5 5m-3-2 5-6"/></svg></span>
+  <div><h3 id="rope-access-heading">{ropeAccess.name}</h3><p>{ropeAccess.summary}</p></div>
+  <span class="rope-arrow" aria-hidden="true">→</span>
+</a>
 <ul class="tiles">
   {serviceGroups.map((group) => <li>
     <a class="tile" href={`/paslaugos/${group.slug}/`} aria-labelledby={`tile-${group.slug}`}>
@@ -23,7 +28,20 @@ const icons: Record<string, string> = {
   </li>)}
 </ul>
 <style>
-  .tiles { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); grid-auto-rows: 1fr; gap: 1rem; }
+  .rope-access { display: flex; align-items: center; gap: 1.1rem; margin-top: 1.5rem; padding: 1.3rem 1.4rem; border-radius: 1.25rem; color: #fff; background: #123c48; text-decoration: none; }
+  .rope-access:is(:hover,:focus-visible) { background: #164f5d; }
+  .rope-access h3 { margin: 0 0 .25rem; font-size: clamp(1.25rem,2.2vw,1.55rem); line-height: 1.15; }
+  .rope-access:is(:hover,:focus-visible) h3 { text-decoration: underline; text-underline-offset: .16em; }
+  .rope-access p { margin: 0; color: #e1eff1; font-size: .96rem; line-height: 1.45; }
+  .rope-symbol { width: 2.8rem; height: 2.8rem; border-radius: .85rem; display: grid; place-items: center; flex: none; background: #275561; }
+  .rope-symbol svg { width: 1.8rem; height: 1.8rem; }
+  .rope-arrow { margin-left: auto; font-size: 1.45rem; }
+  @media (max-width: 640px) {
+    .rope-access { padding: 1rem; gap: .85rem; }
+    .rope-access p { font-size: .88rem; }
+  }
+
+  .tiles { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); grid-auto-rows: 1fr; gap: 1rem; }
   .tiles li { display: flex; min-width: 0; }
   .tile { display: flex; flex: 1; flex-direction: column; padding: 1.3rem 1.4rem; min-width: 0; border: 1px solid #c7dcdf; border-radius: 1.25rem; text-decoration: none; color: var(--ink); background: white; }
   .tile-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.1rem; }

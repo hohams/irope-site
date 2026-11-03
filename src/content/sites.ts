@@ -1,4 +1,4 @@
-import { servicePages } from './irope-catalog';
+import { ropeAccess, servicePages } from './irope-catalog';
 import type { ServicePage } from './irope-pages';
 
 export type SiteConfig = {
@@ -22,13 +22,13 @@ export const sites: Record<SiteConfig['id'], SiteConfig> = {
     id: 'irope', name: 'iRope', tagline: 'Pramoninis alpinizmas Lietuvoje', locale: 'lt-LT',
     email: 'info@irope.lt', phone: '+370 695 16 562', address: 'Vilnius, visa Lietuva',
     sectionIds: { services: 'paslaugos', work: 'darbai', about: 'apie', contact: 'kontaktai' },
-    nav: [{ label: 'Paslaugos', href: '#paslaugos' }, { label: 'Darbai', href: '#darbai' }, { label: 'Apie mus', href: '#apie' }, { label: 'Kontaktai', href: '#kontaktai' }],
-    hero: { eyebrow: 'Vilnius · visa Lietuva', title: 'Aukštuminiai darbai Vilniuje ir visoje Lietuvoje', text: 'Pramoninis alpinizmas, stogų priežiūra ir fasadų valymas ten, kur įprastos priemonės nepasiekia.', primaryAction: 'Gauti pasiūlymą' },
+    nav: [{ label: ropeAccess.name, href: `/paslaugos/${ropeAccess.slug}/` }, { label: 'Paslaugos', href: '#paslaugos' }, { label: 'Darbai', href: '#darbai' }, { label: 'Apie mus', href: '#apie' }, { label: 'Kontaktai', href: '#kontaktai' }],
+    hero: { eyebrow: 'Vilnius · visa Lietuva', title: 'Pramoninis alpinizmas ir aukštuminiai darbai', text: 'Kai darbui ant stogo, fasado ar konstrukcijos reikia aukštalipių, kreipkitės į iRope. Remontuojame stogus, tvarkome lietaus nuvedimo sistemas, plauname langus ir fasadus.', primaryAction: 'Gauti pasiūlymą' },
     services: servicePages.map((page) => ({ title: page.name, text: page.summary, page })),
     trust: ['21 metų patirtis', 'Dirbame visoje Lietuvoje', 'Nemokamas darbų įvertinimas vietoje'],
     seo: {
-      title: 'Aukštuminiai darbai ir pramoninis alpinizmas Vilniuje | iRope',
-      description: 'iRope atlieka aukštuminius darbus Vilniuje ir visoje Lietuvoje: valo latakus bei lietvamzdžius, remontuoja stogus, plauna fasadus ir montuoja konstrukcijas.',
+      title: 'Pramoninis alpinizmas ir aukštuminiai darbai Lietuvoje | iRope',
+      description: 'iRope aukštalipiai Vilniuje ir visoje Lietuvoje. Pramoninis alpinizmas, stogų remontas, latakų priežiūra, langų ir fasadų plovimas bei montavimas aukštyje.',
       image: '/images/irope/facade-high-rise.jpg'
     }
   },

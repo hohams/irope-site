@@ -3,7 +3,7 @@ import type { SiteConfig } from '../content/sites';
 const { site } = Astro.props as { site: SiteConfig };
 const isHomePage = Astro.url.pathname === '/';
 const navigationHref = (href: string) => {
-  if (isHomePage) return href;
+  if (isHomePage || href.startsWith('/')) return href;
   if (site.id === 'irope' && href === '#paslaugos') return '/paslaugos/';
   if (Astro.url.pathname.startsWith('/paslaugos/') && href === '#kontaktai') return href;
   return `/${href}`;

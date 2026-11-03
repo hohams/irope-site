@@ -6,7 +6,7 @@ import Header from '../../components/Header.astro';
 import SectionTiles from '../../components/SectionTiles.astro';
 import ServiceCard from '../../components/ServiceCard.astro';
 import ServicePhotos from '../../components/ServicePhotos.astro';
-import { serviceGroups, type ServiceGroup } from '../../content/irope-catalog';
+import { ropeAccess, ropeAccessExamples, serviceGroups, type ServiceGroup } from '../../content/irope-catalog';
 import type { ServicePage } from '../../content/irope-pages';
 import { activeSite } from '../../content/sites';
 
@@ -14,6 +14,7 @@ export function getStaticPaths() {
   if (activeSite().id !== 'irope') return [];
   return [
     { params: { slug: undefined }, props: {} },
+    { params: { slug: ropeAccess.slug }, props: { page: ropeAccess } },
     ...serviceGroups.flatMap((group) => [
       { params: { slug: group.slug }, props: { group } },
       ...group.pages.map((page) => ({ params: { slug: page.slug }, props: { group, page } })),
@@ -24,10 +25,10 @@ export function getStaticPaths() {
 const site = activeSite();
 const { group, page } = Astro.props as { group?: ServiceGroup; page?: ServicePage };
 const title = page ? `${page.name} Vilniuje` : group?.title ?? 'Aukštuminių darbų paslaugos Vilniuje';
-const description = page?.description ?? group?.description ?? 'iRope aukštuminių darbų katalogas Vilniuje: latakai, stogai, žiemos darbai, fasadai, pramoniniai objektai ir montavimas aukštyje.';
+const description = page?.description ?? group?.description ?? 'iRope aukštuminių darbų katalogas Vilniuje: pramoninis alpinizmas, stogų remontas, latakai ir lietvamzdžiai, langų bei fasadų plovimas, montavimas ir žiemos darbai.';
 const breadcrumbs = [{ name: 'Pradžia', path: '/' }];
 if (group) breadcrumbs.push({ name: group.name, path: `/paslaugos/${group.slug}/` });
-else breadcrumbs.push({ name: 'Paslaugos', path: '/paslaugos/' });
+else if (!page) breadcrumbs.push({ name: 'Paslaugos', path: '/paslaugos/' });
 if (page) breadcrumbs.push({ name: page.name, path: `/paslaugos/${page.slug}/` });
 ---
 <BaseLayout {site} {title} {description} service={page}>
@@ -36,20 +37,25 @@ if (page) breadcrumbs.push({ name: page.name, path: `/paslaugos/${page.slug}/` }
     <div class="section service-body">
       <Breadcrumbs items={breadcrumbs} />
       <h1>{title}</h1>
-      {page && group ? <>
+      {page ? <>
         <p class="lead">{page.introduction}</p>
-        <a class="button" href="#kontaktai">Pateikti užklausą</a>
+        <a class="button" href="#kontaktai">{group ? 'Pateikti užklausą' : 'Aprašyti užduotį'}</a>
+        {!group && <nav class="examples" aria-labelledby="examples-title">
+          <h2 id="examples-title">Kokius darbus atliekame aukštyje?</h2>
+          <ul>{ropeAccessExamples.map((item) => <li><a href={`/paslaugos/${item.slug}/`}>{item.name}</a></li>)}</ul>
+          <a href="/paslaugos/">Visas paslaugų katalogas</a>
+        </nav>}
         {page.photos && <ServicePhotos photos={page.photos} />}
         <div class="detail-copy">
           {page.sections.map((section) => <section><h2>{section.heading}</h2><p>{section.text}</p></section>)}
           <section><h2>Ko reikia pasiūlymui?</h2><p>{page.request}</p></section>
         </div>
         <p><strong>Vilnius ir Vilniaus rajonas.</strong> Dėl darbų kitoje vietovėje užklausoje nurodykite objekto adresą.</p>
-        <nav class="other" aria-label="Susijusios paslaugos">
-          <h2>Susijusios paslaugos</h2>
+        {group && <nav class="other" aria-labelledby="related-title">
+          <h2 id="related-title">Susijusios paslaugos</h2>
           <ul>{group.pages.filter((item) => item.slug !== page.slug).map((item) => <li><a href={`/paslaugos/${item.slug}/`}>{item.name}</a></li>)}</ul>
           <a href={`/paslaugos/${group.slug}/`}>{group.name}</a>
-        </nav>
+        </nav>}
       </> : group ? <>
         <p class="lead">{group.introduction}</p>
         <section class="service-list">
@@ -77,5 +83,8 @@ if (page) breadcrumbs.push({ name: page.name, path: `/paslaugos/${page.slug}/` }
   .detail-copy p, .choice p { margin: 0; }
   .service-list ul { display: grid; gap: .65rem; list-style: none; padding: 0; }
   .choice { margin-bottom: 1.5rem; }
+  .examples { max-width: 49rem; margin-block: 2rem; }
+  .examples h2 { font-size: clamp(1.35rem,3vw,1.7rem); }
+  .examples ul { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,18rem),1fr)); gap: .55rem 1.5rem; padding-left: 1.25rem; }
   .other li + li { margin-top: .4rem; }
 </style>
