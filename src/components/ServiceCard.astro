@@ -1,0 +1,16 @@
+---
+import type { ServicePage } from '../content/irope-pages';
+import ServicePhotos from './ServicePhotos.astro';
+
+interface Props { page: ServicePage }
+const { page } = Astro.props;
+---
+<article class="card">
+  <h3><a href={`/paslaugos/${page.slug}/`}>{page.name}</a></h3>
+  <p>{page.summary}</p>
+  {page.photos && <ServicePhotos photos={page.photos} />}
+</article>
+<style>
+  h3 a { color: var(--accent-deep); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .18em; }
+  h3 a:hover, h3 a:focus-visible { color: var(--accent); text-decoration-thickness: 2px; }
+</style>

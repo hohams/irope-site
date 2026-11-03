@@ -1,6 +1,9 @@
+import type { PhotoKey } from './irope-photos';
 export type ServicePage = {
   slug: string;
   name: string;
+  summary: string;
+  photos?: PhotoKey[];
   description: string;
   introduction: string;
   sections: { heading: string; text: string }[];
@@ -8,8 +11,10 @@ export type ServicePage = {
 };
 
 export const gutterCleaning: ServicePage = {
+  photos: ['gutter-work', 'snow-load'],
   slug: 'lataku-lietvamzdziu-valymas',
   name: 'Latakų ir lietvamzdžių valymas',
+  summary: 'Valome sąnašas iš stogo latakų ir lietvamzdžių, kuriais nuteka lietaus vanduo.',
   description: 'Valome stogų latakus ir lietvamzdžius Vilniuje ir Vilniaus rajone. Sužinokite, kokių duomenų reikia darbų apimčiai ir kainai įvertinti.',
   introduction: 'Jei lyjant vanduo liejasi per latako kraštą, atkreipkite dėmesį, kur tai vyksta: ties lietvamzdžio įlaja, per sujungimą ar per visą latako ilgį. Ši informacija padeda įvertinti, ar pirmiausia reikia valyti lataką, ar apžiūrėti pačią konstrukciją.',
   sections: [
@@ -20,8 +25,10 @@ export const gutterCleaning: ServicePage = {
 };
 
 export const gutterRepair: ServicePage = {
+  photos: ['gutter-work', 'snow-load'],
   slug: 'lataku-remontas',
   name: 'Latakų ir lietvamzdžių remontas',
+  summary: 'Remontuojame pažeistas lietaus nuvedimo sistemos dalis ir montuojame naujus latakus bei lietvamzdžius.',
   description: 'Remontuojame ir montuojame lietaus latakus bei lietvamzdžius Vilniuje ir Vilniaus rajone. Ką nurodyti, jei prakiuro jungtis ar atsikabino vamzdis.',
   introduction: 'Atsikabinęs lietvamzdis, pasviręs latakas ir vandens nuotėkis per jungtį gali atrodyti panašiai iš kiemo, tačiau darbų apimtis skiriasi. Remontuojame ir montuojame lietaus nuvedimo sistemos elementus aukštyje.',
   sections: [
@@ -32,8 +39,10 @@ export const gutterRepair: ServicePage = {
 };
 
 export const roofSnow: ServicePage = {
+  photos: ['snow-load'],
   slug: 'sniego-valymas',
   name: 'Sniego, ledo ir varveklių šalinimas nuo stogų',
+  summary: 'Šaliname sniegą, ledą ir varveklius nuo stogų bei karnizų.',
   description: 'Sniego ir ledo valymas nuo stogų, varveklių šalinimas Vilniuje ir Vilniaus rajone. Užklausai svarbūs stogo plotas, jo danga ir vieta po karnizu.',
   introduction: 'Šaliname nuo stogų susikaupusį sniegą, ledą ir prie karnizų susidariusius varveklius. Užklausoje išskirkite, ar reikia nuvalyti stogo plotą, ar sutvarkyti konkretų kraštą virš įėjimo, šaligatvio ar automobilių stovėjimo vietos.',
   sections: [
@@ -46,6 +55,7 @@ export const roofSnow: ServicePage = {
 export const holidayLights: ServicePage = {
   slug: 'kalediniu-dekoraciju-montavimas',
   name: 'Kalėdinių dekoracijų montavimas aukštyje',
+  summary: 'Montuojame šventines dekoracijas aukštyje ir nuimame jas pasibaigus sezonui.',
   description: 'Montuojame ir išmontuojame šventines dekoracijas aukštyje Vilniuje ir Vilniaus rajone. Ką nurodyti apie tvirtinimo vietas, dekoracijas ir datas.',
   introduction: 'Montuojame šventines dekoracijas aukštyje ir nuimame jas pasibaigus sezonui. Planuojant darbus svarbu žinoti, kur bus tvirtinama kiekviena dekoracija ir kaip tą vietą galima pasiekti.',
   sections: [
@@ -56,8 +66,10 @@ export const holidayLights: ServicePage = {
 };
 
 export const roofRepair: ServicePage = {
+  photos: ['roof-access', 'roof-cleaning'],
   slug: 'stogu-remontas',
   name: 'Stogų apžiūra ir remontas',
+  summary: 'Apžiūrime ir remontuojame metalinę, čerpinę bei prilydomą ritininę stogo dangą.',
   description: 'Metalinių, čerpinių ir prilydoma danga dengtų stogų apžiūra ir remontas Vilniuje bei Vilniaus rajone. Kaip apibūdinti nuotėkį ir pateikti užklausą.',
   introduction: 'Apžiūrime ir remontuojame metalinius, čerpinius bei prilydoma ritinine danga dengtus stogus. Jei viduje matyti drėgmė, nurodykite, kada ji atsiranda: po ilgo lietaus, pučiant vėjui ar tirpstant sniegui. Vandens patekimo vieta gali skirtis nuo dėmės vietos patalpoje.',
   sections: [

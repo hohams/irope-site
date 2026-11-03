@@ -1,4 +1,7 @@
 ---
+import ServicePhotos from '../../components/ServicePhotos.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { serviceGroups, servicePages } from '../../content/irope-catalog';
 import { activeSite } from '../../content/sites';
 import type { ServicePage } from '../../content/irope-pages';
 import BaseLayout from '../../layouts/BaseLayout.astro';
@@ -10,9 +13,7 @@ export function getStaticPaths() {
   if (site.id !== 'irope') return [];
   return [
     { params: { slug: undefined }, props: { page: undefined } },
-    ...site.services.flatMap((service) => (service.pages ?? []).map((page) => ({
-      params: { slug: page.slug }, props: { page },
-    }))),
+    ...servicePages.map((page) => ({ params: { slug: page.slug }, props: { page } })),
   ];
 }
 
@@ -20,7 +21,8 @@ const site = activeSite();
 const { page } = Astro.props as { page?: ServicePage };
 const title = page ? `${page.name} Vilniuje` : 'Aukštuminių darbų paslaugos Vilniuje';
 const description = page?.description ?? 'iRope aukštuminių darbų katalogas: stogai ir lietaus nuvedimo sistemos, fasadai, dūmtraukių ir pramoninių vamzdžių apžiūra, montavimas bei sezoniniai darbai.';
-const otherPages = site.services.flatMap((service) => service.pages ?? []).filter((item) => item.slug !== page?.slug);
+const group = page && serviceGroups.find((group) => group.pages.some((item) => item.slug === page.slug));
+const relatedPages = group?.pages.filter((item) => item.slug !== page?.slug) ?? [];
 ---
 <BaseLayout {site} {title} {description}>
   <Header {site} />
@@ -28,30 +30,29 @@ const otherPages = site.services.flatMap((service) => service.pages ?? []).filte
     <div class="section service-body">
       <nav aria-label="Naršymo kelias" class="crumbs">
         <a href="/">Pradžia</a> /
-        {page ? <a href="/paslaugos/">Paslaugos</a> : <span aria-current="page">Paslaugos</span>}
+        {page ? <><a href="/paslaugos/">Paslaugos</a> / <span aria-current="page">{page.name}</span></> : <span aria-current="page">Paslaugos</span>}
       </nav>
       <h1>{title}</h1>
       {page ? <>
         <p class="lead">{page.introduction}</p>
         <a class="button" href="#kontaktai">Pateikti užklausą</a>
+        {page.photos && <ServicePhotos photos={page.photos} />}
         <div class="detail-copy">
           {page.sections.map((section) => <section><h2>{section.heading}</h2><p>{section.text}</p></section>)}
           <section><h2>Ko reikia pasiūlymui?</h2><p>{page.request}</p></section>
         </div>
         <p><strong>Vilnius ir Vilniaus rajonas.</strong> Dėl darbų kitoje vietovėje užklausoje nurodykite objekto adresą.</p>
-        <nav class="other" aria-label="Kitos paslaugos">
-          <h2>Kitos paslaugos</h2>
-          <ul>{otherPages.map((item) => <li><a href={`/paslaugos/${item.slug}/`}>{item.name}</a></li>)}</ul>
+        <nav class="other" aria-label="Susijusios paslaugos">
+          <h2>Susijusios paslaugos</h2>
+          <ul>{relatedPages.map((item) => <li><a href={`/paslaugos/${item.slug}/`}>{item.name}</a></li>)}</ul>
           <a href="/paslaugos/">Visas paslaugų katalogas</a>
         </nav>
       </> : <>
         <p class="lead">Pasirinkite darbus pagal tai, kurią pastato dalį reikia prižiūrėti, remontuoti ar apžiūrėti. Jei reikia kelių paslaugų tame pačiame objekte, jas galite nurodyti vienoje užklausoje.</p>
-        <div class="cards">
-          {site.services.map((service) => <article class="card">
-            <h2>{service.title}</h2><p>{service.text}</p>
-            {service.pages && <ul>{service.pages.map((item) => <li><a href={`/paslaugos/${item.slug}/`}>{item.name}</a></li>)}</ul>}
-          </article>)}
-        </div>
+        {serviceGroups.map((group) => <section class="catalog-group">
+          <h2>{group.name}</h2>
+          <div class="cards">{group.pages.map((item) => <ServiceCard page={item} />)}</div>
+        </section>)}
       </>}
     </div>
     <ContactForm {site} />
@@ -65,6 +66,7 @@ const otherPages = site.services.flatMap((service) => service.pages ?? []).filte
   .detail-copy section, .other { margin-top: 2rem; }
   .detail-copy h2, .other h2 { font-size: 1.6rem; margin: 0 0 .4em; }
   .detail-copy p { margin: 0; }
-  .card h2 { font-size: 1.3rem; }
+  .catalog-group + .catalog-group { margin-top: 2.25rem; }
+  .catalog-group > h2 { font-size: 1.65rem; }
   .service-body li + li { margin-top: .4em; }
 </style>

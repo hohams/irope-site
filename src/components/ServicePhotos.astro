@@ -1,0 +1,22 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { photoDescriptions, type PhotoKey } from '../content/irope-photos';
+
+interface Props { photos: PhotoKey[] }
+const { photos } = Astro.props;
+const files = import.meta.glob<{ default: ImageMetadata }>('../../public/images/irope/*.jpg', { eager: true });
+---
+<div class="service-photos">
+  {photos.map((key) => <figure>
+    <Image src={files[`../../public/images/irope/${key}.jpg`].default} alt={photoDescriptions[key]}
+      width={640} format="webp" loading="lazy" decoding="async" />
+    <figcaption>{photoDescriptions[key]}</figcaption>
+  </figure>)}
+</div>
+<style>
+  .service-photos { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr)); gap: .75rem; margin-block: 1rem; max-width: 48rem; }
+  figure { margin: 0; }
+  img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: contain; background: #eef1f2; display: block; border-radius: .4rem; }
+  figcaption { color: var(--muted); font-size: .88rem; margin-top: .35rem; }
+</style>
