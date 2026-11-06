@@ -1,90 +1,12 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
-import ContactForm from '../../components/ContactForm.astro';
-import Header from '../../components/Header.astro';
-import SectionTiles from '../../components/SectionTiles.astro';
-import ServiceCard from '../../components/ServiceCard.astro';
-import ServicePhotos from '../../components/ServicePhotos.astro';
-import { ropeAccess, ropeAccessExamples, serviceGroups, type ServiceGroup } from '../../content/irope-catalog';
-import type { ServicePage } from '../../content/irope-pages';
+import WorkPage from '../../components/WorkPage.astro';
+import metadata from '../../content/work-pages/metadata.json';
 import { activeSite } from '../../content/sites';
-
 export function getStaticPaths() {
   if (activeSite().id !== 'irope') return [];
-  return [
-    { params: { slug: undefined }, props: {} },
-    { params: { slug: ropeAccess.slug }, props: { page: ropeAccess } },
-    ...serviceGroups.flatMap((group) => [
-      { params: { slug: group.slug }, props: { group } },
-      ...group.pages.map((page) => ({ params: { slug: page.slug }, props: { group, page } })),
-    ]),
-  ];
+  return (Object.keys(metadata) as (keyof typeof metadata)[])
+    .filter(name => name !== 'home')
+    .map(name => ({ params: {slug: name.split('_')[1]}, props: {name} }));
 }
-
-const site = activeSite();
-const { group, page } = Astro.props as { group?: ServiceGroup; page?: ServicePage };
-const title = page ? `${page.name} Vilniuje` : group?.title ?? 'Aukštuminių darbų paslaugos Vilniuje';
-const description = page?.description ?? group?.description ?? 'iRope aukštuminių darbų katalogas Vilniuje: pramoninis alpinizmas, stogų remontas, latakai ir lietvamzdžiai, langų bei fasadų plovimas, montavimas ir žiemos darbai.';
-const breadcrumbs = [{ name: 'Pradžia', path: '/' }];
-if (group) breadcrumbs.push({ name: group.name, path: `/paslaugos/${group.slug}/` });
-else if (!page) breadcrumbs.push({ name: 'Paslaugos', path: '/paslaugos/' });
-if (page) breadcrumbs.push({ name: page.name, path: `/paslaugos/${page.slug}/` });
 ---
-<BaseLayout {site} {title} {description} service={page}>
-  <Header {site} />
-  <main>
-    <div class="section service-body">
-      <Breadcrumbs items={breadcrumbs} />
-      <h1>{title}</h1>
-      {page ? <>
-        <p class="lead">{page.introduction}</p>
-        <a class="button" href="#kontaktai">{group ? 'Pateikti užklausą' : 'Aprašyti užduotį'}</a>
-        {!group && <nav class="examples" aria-labelledby="examples-title">
-          <h2 id="examples-title">Kokius darbus atliekame aukštyje?</h2>
-          <ul>{ropeAccessExamples.map((item) => <li><a href={`/paslaugos/${item.slug}/`}>{item.name}</a></li>)}</ul>
-          <a href="/paslaugos/">Visas paslaugų katalogas</a>
-        </nav>}
-        {page.photos && <ServicePhotos photos={page.photos} />}
-        <div class="detail-copy">
-          {page.sections.map((section) => <section><h2>{section.heading}</h2><p>{section.text}</p></section>)}
-          <section><h2>Ko reikia pasiūlymui?</h2><p>{page.request}</p></section>
-        </div>
-        <p><strong>Vilnius ir Vilniaus rajonas.</strong> Dėl darbų kitoje vietovėje užklausoje nurodykite objekto adresą.</p>
-        {group && <nav class="other" aria-labelledby="related-title">
-          <h2 id="related-title">Susijusios paslaugos</h2>
-          <ul>{group.pages.filter((item) => item.slug !== page.slug).map((item) => <li><a href={`/paslaugos/${item.slug}/`}>{item.name}</a></li>)}</ul>
-          <a href={`/paslaugos/${group.slug}/`}>{group.name}</a>
-        </nav>}
-      </> : group ? <>
-        <p class="lead">{group.introduction}</p>
-        <section class="service-list">
-          <h2>Pasirinkite paslaugą</h2>
-          <ul>{group.pages.map((item) => <li><ServiceCard page={item} /></li>)}</ul>
-        </section>
-        <section class="choice"><h2>{group.question}</h2><p>{group.answer}</p></section>
-        <a class="button" href="#kontaktai">Pateikti užklausą</a>
-      </> : <>
-        <p class="lead">Pasirinkite darbų sritį. Joje rasite konkrečias paslaugas, darbų aprašymus ir informaciją, kurios reikia pasiūlymui gauti.</p>
-        <h2>Paslaugų sritys</h2>
-        <SectionTiles />
-      </>}
-    </div>
-    <ContactForm {site} />
-  </main>
-  <footer>© {new Date().getFullYear()} {site.name} · <a href="/teisine-informacija/">Teisinė informacija</a></footer>
-</BaseLayout>
-<style>
-  .service-body h1 { font-size: clamp(2.1rem, 5vw, 3.65rem); }
-  .service-body .lead { margin-top: 1rem; max-width: 50rem; }
-  .detail-copy, .other, .service-list, .choice { max-width: 49rem; }
-  .detail-copy section, .other, .choice { margin-top: 2rem; }
-  .detail-copy h2, .service-list h2, .choice h2, .other h2 { margin: 0 0 .65rem; font-size: clamp(1.35rem, 3vw, 1.7rem); }
-  .detail-copy p, .choice p { margin: 0; }
-  .service-list ul { display: grid; gap: .65rem; list-style: none; padding: 0; }
-  .choice { margin-bottom: 1.5rem; }
-  .examples { max-width: 49rem; margin-block: 2rem; }
-  .examples h2 { font-size: clamp(1.35rem,3vw,1.7rem); }
-  .examples ul { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,18rem),1fr)); gap: .55rem 1.5rem; padding-left: 1.25rem; }
-  .other li + li { margin-top: .4rem; }
-</style>
+<WorkPage name={Astro.props.name} />

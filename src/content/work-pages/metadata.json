@@ -1,0 +1,146 @@
+{
+  "home": {
+    "title": "Pramoninis alpinizmas ir aukštuminiai darbai",
+    "description": "Remontuojame, valome ir plauname stogus, apžiūrime jų dangą. Taip pat tvarkome latakus bei lietvamzdžius ir plauname langus bei fasadus ten, kur reikia aukštalipių."
+  },
+  "paslaugos_antenu-montavimas": {
+    "title": "Antenų montavimas ir išmontavimas Vilniuje",
+    "description": "Užklausoje nurodykite, ar montuojama nauja antena, keičiama esama, ar ją reikia nuimti. Tvirtinimo vietą padeda įvertinti bendras stogo ar konstrukcijos vaizdas."
+  },
+  "paslaugos_apsaugos-nuo-pauksciu-montavimas": {
+    "title": "Apsaugos nuo paukščių montavimas Vilniuje",
+    "description": "Pažymėkite vietas, kuriose tupia ar įsitaiso paukščiai: ant karnizo, palangės, nišoje ar prie konstrukcijų. Nuo vietos formos ir ploto priklauso, kokį sprendimą galima įrengti."
+  },
+  "paslaugos_dumtraukiai-ir-pramones-objektai": {
+    "title": "Dūmtraukių ir pramoninių konstrukcijų priežiūra Vilniuje",
+    "description": "Apžiūrime dūmtraukius, pramoninius vamzdžius ir konstrukcijas. Remontuojame dūmtraukių viršutines dalis bei ventiliacijos šachtas."
+  },
+  "paslaugos_dumtraukiu-ir-pramoniniu-vamzdziu-apziura": {
+    "title": "Dūmtraukių ir pramoninių vamzdžių apžiūra Vilniuje",
+    "description": "Apžiūra gali būti reikalinga dėl matomo pažeidimo arba prieš planuojant remontą. Užklausoje pažymėkite, ar reikia apžiūrėti visą konstrukciją, konkrečią vamzdžio atkarpą ar dūmtraukio viršų."
+  },
+  "paslaugos_dumtraukiu-virsutiniu-daliu-remontas": {
+    "title": "Dūmtraukių ir jų viršutinių dalių remontas Vilniuje",
+    "description": "Jei virš stogo esančioje dalyje matyti aptrupėjęs mūras ar pažeistas dūmtraukio viršus, nurodykite, kurioje pusėje tai pastebėjote. Remonto apimtį tiksliname pagal esamą būklę."
+  },
+  "paslaugos_elektros-montavimo-darbai-aukstyje": {
+    "title": "Elektros montavimo darbai aukštyje Vilniuje",
+    "description": "Aprašykite, kokią įrangą reikia sumontuoti ir kur ji bus įrengta. Jei darbai susiję su kabeliu, nurodykite planuojamos trasos pradžią ir pabaigą."
+  },
+  "paslaugos_fasadai-ir-stiklai": {
+    "title": "Langų, fasadų ir pramoninių konstrukcijų valymas Vilniuje",
+    "description": "Plauname langus, stiklinius kupolus, atriumus ir fasadus. Pramoniniuose pastatuose valome sunkiai pasiekiamas sijas, atramas ir kitas konstrukcijas."
+  },
+  "paslaugos_fasadu-plovimas": {
+    "title": "Fasadų plovimas Vilniuje",
+    "description": "Planuojant fasado plovimą, svarbu žinoti apdailos medžiagą ir atskirti paviršiaus nešvarumus nuo nusilupusių dažų ar pažeistos apdailos."
+  },
+  "paslaugos_fasadu-remontas-ir-dazymas": {
+    "title": "Fasadų remontas ir dažymas Vilniuje",
+    "description": "Aprašykite, ar reikia sutvarkyti vieną pažeistą vietą, ar perdažyti visą fasado dalį. Jei apdaila atšokusi, nuotraukoje pažymėkite pažeidimo ribas."
+  },
+  "paslaugos": {
+    "title": "Aukštuminių darbų paslaugos Vilniuje",
+    "description": "Pasirinkite darbų sritį. Joje rasite konkrečias paslaugas, darbų aprašymus ir informaciją, kurios reikia pasiūlymui gauti."
+  },
+  "paslaugos_kalediniu-dekoraciju-montavimas": {
+    "title": "Kalėdinių dekoracijų montavimas aukštyje Vilniuje",
+    "description": "Montuojame šventines dekoracijas aukštyje ir nuimame jas pasibaigus sezonui. Planuojant darbus svarbu žinoti, kur bus tvirtinama kiekviena dekoracija ir kaip tą vietą galima pasiekti."
+  },
+  "paslaugos_konstrukciju-ir-iskabu-montavimas": {
+    "title": "Konstrukcijų ir iškabų montavimas aukštyje Vilniuje",
+    "description": "Naujos iškabos montavimui ir senos konstrukcijos nuėmimui reikia skirtingos informacijos. Vienu atveju svarbūs naujo elemento matmenys, kitu – tai, kaip jis dabar pritvirtintas."
+  },
+  "paslaugos_langu-ir-stiklo-konstrukciju-valymas": {
+    "title": "Langų ir stiklo konstrukcijų valymas aukštyje Vilniuje",
+    "description": "Langų eilių, stiklinio kupolo ir atriumo plovimą planuojame skirtingai. Svarbu, ar stiklas pasiekiamas iš lauko, iš pastato vidaus, ar reikia nuplauti abi puses."
+  },
+  "paslaugos_latakai-ir-lietvamzdziai": {
+    "title": "Latakų ir lietvamzdžių priežiūra Vilniuje",
+    "description": "Valome lietaus nuvedimo sistemas ir remontuojame jų dalis. Čia galite pasirinkti darbus pagal tai, kas vyksta lyjant: vanduo persipila per kraštą, prateka per jungtį ar teka pro atsikabinusį vamzdį."
+  },
+  "paslaugos_lataku-lietvamzdziu-valymas": {
+    "title": "Latakų ir lietvamzdžių valymas Vilniuje",
+    "description": "Jei lyjant vanduo liejasi per latako kraštą, atkreipkite dėmesį, kur tai vyksta: ties lietvamzdžio įlaja, per sujungimą ar per visą latako ilgį. Ši informacija padeda įvertinti, ar pirmiausia reikia valyti lataką, ar apžiūrėti pačią konstrukciją."
+  },
+  "paslaugos_lataku-remontas": {
+    "title": "Latakų ir lietvamzdžių remontas Vilniuje",
+    "description": "Atsikabinęs lietvamzdis, pasviręs latakas ir vandens nuotėkis per jungtį gali atrodyti panašiai iš kiemo, tačiau darbų apimtis skiriasi. Remontuojame ir montuojame lietaus nuvedimo sistemos elementus aukštyje."
+  },
+  "paslaugos_montavimas-aukstyje": {
+    "title": "Montavimo ir išmontavimo darbai aukštyje Vilniuje",
+    "description": "Montuojame ir nuimame iškabas, antenas ir šventines dekoracijas, taip pat įrengiame apsaugą nuo paukščių. Pasirinkite įrangą ar konstrukciją, dėl kurios kreipiatės."
+  },
+  "paslaugos_pramoninis-alpinizmas": {
+    "title": "Pramoninis alpinizmas Vilniuje",
+    "description": "Pramoninis alpinizmas – tai būdas pasiekti darbo vietą naudojant virves. Taip apžiūrime, remontuojame, plauname ar montuojame ten, kur prie fasado, stogo krašto ar konstrukcijos sunku prieiti nuo žemės. Dirbame Vilniuje ir vykstame į objektus visoje Lietuvoje."
+  },
+  "paslaugos_pramoniniu-konstrukciju-valymas": {
+    "title": "Pramoninių konstrukcijų valymas aukštyje Vilniuje",
+    "description": "Užklausoje įvardykite valomas sijas, atramas ar kitus konstrukcijų elementus. Pažymėkite, ar darbai numatomi pastato viduje, ar lauke."
+  },
+  "paslaugos_sniego-uztvaru-montavimas": {
+    "title": "Sniego užtvarų montavimas Vilniuje",
+    "description": "Užtvarų vietą pradedame vertinti nuo to, kur nuo stogo slenka sniegas: virš įėjimo, praėjimo ar stovėjimo vietos. Montavimo apimtis priklauso nuo konkretaus šlaito ir jo dangos."
+  },
+  "paslaugos_sniego-valymas": {
+    "title": "Sniego, ledo ir varveklių šalinimas nuo stogų Vilniuje",
+    "description": "Šaliname nuo stogų susikaupusį sniegą, ledą ir prie karnizų susidariusius varveklius. Užklausoje išskirkite, ar reikia nuvalyti stogo plotą, ar sutvarkyti konkretų kraštą virš įėjimo, šaligatvio ar automobilių stovėjimo vietos."
+  },
+  "paslaugos_stogu-apsauga-ziema": {
+    "title": "Sniego valymas ir stogų apsauga žiemą Vilniuje",
+    "description": "Šaliname sniegą ir varveklius. Jei ta pati vieta apledėja kas žiemą arba sniegas nuslenka nuo šlaito virš įėjimo, atskirai įvertiname šildymo kabelių ar sniego užtvarų montavimą."
+  },
+  "paslaugos_stogu-ir-lataku-sildymo-kabeliu-montavimas": {
+    "title": "Stogų ir latakų šildymo kabelių montavimas Vilniuje",
+    "description": "Kabelių gali reikėti tik ties įlaja arba ilgesnėje atkarpoje nuo karnizo iki lietvamzdžio apačios. Kad galėtume įvertinti montavimo apimtį, nurodykite, kur žiemą kaupiasi ledas."
+  },
+  "paslaugos_stogu-prieziura": {
+    "title": "Stogų darbai Vilniuje",
+    "description": "Remontuojame metalines, čerpines ir prilydomas ritinines stogų dangas, šaliname samanas ir plauname stogus. Jei pirmiausia reikia nustatyti dangos būklę arba apžiūrėti vietą, kurioje įtariate pažeidimą, galite atskirai užsakyti stogo apžiūrą."
+  },
+  "paslaugos_stogu-remontas": {
+    "title": "Stogų remontas Vilniuje",
+    "description": "Apžiūrime ir remontuojame metalinius, čerpinius bei prilydoma ritinine danga dengtus stogus. Jei viduje matyti drėgmė, nurodykite, kada ji atsiranda: po ilgo lietaus, pučiant vėjui ar tirpstant sniegui. Vandens patekimo vieta gali skirtis nuo dėmės vietos patalpoje."
+  },
+  "paslaugos_stogu-valymas-ir-plovimas": {
+    "title": "Stogų valymas ir plovimas Vilniuje",
+    "description": "Jei samanomis apaugusi tik viena stogo pusė, užklausoje pažymėkite būtent tą šlaitą. Valymo apimtį vertiname pagal dangos rūšį, jos būklę ir tai, kaip pasiekiama darbo vieta."
+  },
+  "paslaugos_ventiliacijos-sachtu-remontas": {
+    "title": "Ventiliacijos šachtų remontas Vilniuje",
+    "description": "Kad galėtume įvertinti remontą, svarbu matyti, kuri šachtos dalis pažeista ir kaip ją galima pasiekti. Nurodykite, ar šachta yra ant stogo, ar prie fasado."
+  },
+  "paslaugos_fasadu-darbai": {
+    "title": "Fasadų darbai Vilniuje",
+    "description": "Apžiūrime ir remontuojame fasadus, dažome fasadų apdailą ir sandariname langų jungtis. Dirbame su pakabinamaisiais ir stikliniais fasadais. Konkrečius darbus deriname pagal fasado sistemą ir pažeidimo vietą."
+  },
+  "paslaugos_fasadu-apziura": {
+    "title": "Fasadų apžiūra aukštyje Vilniuje",
+    "description": "Jei nuo žemės sunku įžiūrėti pažeistą fasado vietą, galime ją apžiūrėti aukštyje. Užklausoje pažymėkite, ar rūpi apdailos būklė, konkreti jungtis, ar keli to paties fasado elementai."
+  },
+  "paslaugos_langu-sandarinimas-aukstyje": {
+    "title": "Langų sandarinimas aukštyje Vilniuje",
+    "description": "Sandariname iš išorės sunkiai pasiekiamas langų jungtis. Jei po lietaus prie lango atsiranda drėgmės, nurodykite, kur ji matoma ir kuri pastato pusė yra veikiama lietaus."
+  },
+  "paslaugos_pakabinamuju-fasadu-darbai": {
+    "title": "Pakabinamųjų fasadų darbai Vilniuje",
+    "description": "Jei pakabinamojo fasado plokštė pasislinko ar buvo pažeista, pažymėkite vietą bendroje pastato nuotraukoje. Darbų apimtis priklauso nuo apdailos ir fasado sistemos."
+  },
+  "paslaugos_stikliniu-fasadu-darbai": {
+    "title": "Stiklinių fasadų darbai Vilniuje",
+    "description": "Nurodykite, ar problema pastebėta prie rėmo, fasado jungties ar konkrečioje įstiklintoje dalyje. Tai padės suplanuoti apžiūrą iš išorės."
+  },
+  "paslaugos_elektromontavimas-ir-sildymo-kabeliai": {
+    "title": "Elektros darbai aukštyje ir šildymo kabelių montavimas Vilniuje",
+    "description": "Pasirinkite elektros montavimo darbus, jei reikia aukštyje sumontuoti įrangą ar nutiesti kabelį. Jei norite apsaugoti stogo kraštą, lataką arba lietvamzdį nuo apledėjimo, rinkitės šildymo kabelių montavimą."
+  },
+  "paslaugos_pramoniniu-objektu-ir-konstrukciju-apziura": {
+    "title": "Pramoninių objektų ir konstrukcijų apžiūra Vilniuje",
+    "description": "Apžiūrime nurodytas pramoninio objekto konstrukcijas, kai jas sunku pasiekti nuo žemės. Iš anksto suderiname, kuriuos elementus reikia apžiūrėti ir kokios informacijos reikia užsakovui."
+  },
+  "paslaugos_stogu-apziura": {
+    "title": "Stogų apžiūra Vilniuje",
+    "description": "Stogo apžiūrą galite užsakyti atskirai. Ji aktuali, kai po lietaus patalpoje atsiranda drėgmės, iš kiemo matyti pakitusi danga arba prieš planuojant remontą reikia iš arčiau apžiūrėti stogo dalį."
+  }
+}

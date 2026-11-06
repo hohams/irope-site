@@ -1,0 +1,18 @@
+---
+import { activeSite } from '../content/sites';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from './Header.astro';
+import ContactForm from './ContactForm.astro';
+import metadata from '../content/work-pages/metadata.json';
+import '../styles/work-photos.css';
+const { name } = Astro.props as {name: keyof typeof metadata};
+const pages = import.meta.glob<string>('../content/work-pages/*.html', { eager: true, query: '?raw', import: 'default' });
+const site = activeSite();
+const {title, description} = metadata[name];
+---
+<BaseLayout {site} title={name === 'home' ? undefined : title} {description}>
+  <Header {site} />
+  <main><Fragment set:html={pages[`../content/work-pages/${name}.html`]} /><ContactForm {site} /></main>
+  <footer>© {new Date().getFullYear()} {site.name} · {site.address} · <a href="/teisine-informacija/">Teisinė informacija</a></footer>
+  <script is:inline defer src="/work-photos/carousel.js"></script>
+</BaseLayout>
