@@ -1,0 +1,40 @@
+<dialog id="work-photo-viewer" aria-label="Padidinta nuotrauka">
+  <button type="button" autofocus aria-label="Uždaryti nuotrauką">Uždaryti ×</button>
+  <img alt="" />
+</dialog>
+<style>
+  dialog { position: fixed; inset: 0; margin: auto; width: fit-content; max-width: 96vw; max-height: 96dvh; padding: 0; background: #111; border: 0; }
+  dialog::backdrop { background: rgb(8 15 21 / 88%); }
+  dialog img { display: block; width: auto; height: auto; max-width: 94vw; max-height: 92dvh; object-fit: contain; }
+  dialog button { position: absolute; right: .5rem; top: .5rem; z-index: 1; min-height: 44px; padding: .5rem 1rem; color: white; background: #17242e; border: 1px solid white; border-radius: 2rem; cursor: pointer; }
+  :global(.hero-photo[role=button]) { cursor: zoom-in; }
+  :global(body:has(#work-photo-viewer[open])) { overflow: hidden; }
+</style>
+<script>
+  const viewer = document.querySelector<HTMLDialogElement>('#work-photo-viewer')!;
+  const large = viewer.querySelector('img')!;
+  function openPhoto(image: HTMLImageElement) {
+    large.src = image.currentSrc || image.src;
+    large.alt = image.alt;
+    viewer.showModal();
+  }
+  for (const link of document.querySelectorAll<HTMLAnchorElement>('.photo-card a')) {
+    link.addEventListener('click', event => {
+      event.preventDefault();
+      openPhoto(link.querySelector('img')!);
+    });
+  }
+  for (const image of document.querySelectorAll<HTMLImageElement>('.hero-collage img')) {
+    image.tabIndex = 0;
+    image.setAttribute('role', 'button');
+    image.addEventListener('click', () => openPhoto(image));
+    image.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openPhoto(image);
+      }
+    });
+  }
+  viewer.querySelector('button')!.addEventListener('click', () => viewer.close());
+  viewer.addEventListener('click', event => { if (event.target === viewer) viewer.close(); });
+</script>
