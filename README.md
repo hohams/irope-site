@@ -4,7 +4,7 @@
 
 ## Сборка
 
-Node.js 22, `npm ci`, затем `npm run build`. Результат в `dist/`.
+Node.js 24, `npm ci`, затем `npm run build`. Результат в `dist/`.
 По умолчанию SITE_URL=https://irope.lt и PUBLIC_SITE_ID=irope.
 В GitHub оставлена одна проверка `.github/workflows/ci.yml`.
 
